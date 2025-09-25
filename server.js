@@ -5,6 +5,7 @@ const PORT = 8000;
 const server = http.createServer((request, response) => {
     response.setHeader("Content-Type", "text/html");
     response.statusCode = 200;
+    // response.writeHead(200, "OK", {"content-type": "text/html"});
     response.end("<html><h1>The server is working</h1></html>");
 });
 

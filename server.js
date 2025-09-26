@@ -9,7 +9,7 @@ const __dirname = import.meta.dirname; // absolute path of the directory contain
 
 const server = http.createServer(async (request, response) => {
   // response.writeHead(200, "OK", {"content-type": "text/html"});
-  await serveStatic(__dirname, response);
+  await serveStatic(__dirname, request, response);
 });
 
 server.listen(PORT, "localhost", () => {

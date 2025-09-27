@@ -21,7 +21,7 @@ export const serveStatic = async (baseDir, request, response) => {
       ? sendResponse(response, content, "text/html", 404)
       : sendResponse(
           response,
-          "<html><h1>Server Error: ${err.code}</h1></html>",
+          `<html><h1>Server Error: ${err.code}</h1></html>`,
           "text/html",
           500
         );

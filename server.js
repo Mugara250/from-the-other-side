@@ -1,5 +1,7 @@
 import http from "node:http";
 import { serveStatic } from "./utils/serveStatic.js";
+import { getData } from "./utils/getData.js";
+import { handleGet } from "./handlers/routeHandlers.js";
 
 const PORT = 8000;
 
@@ -9,7 +11,13 @@ const __dirname = import.meta.dirname; // absolute path of the directory contain
 
 const server = http.createServer(async (request, response) => {
   // response.writeHead(200, "OK", {"content-type": "text/html"});
-  await serveStatic(__dirname, request, response);
+  if (request.url.startsWith("/api")) {
+    if (request.method === "GET") {
+      return await handleGet(response);
+    }
+  } else if (!request.url.startsWith("/api")) {
+    return await serveStatic(__dirname, request, response);
+  }
 });
 
 server.listen(PORT, "localhost", () => {
